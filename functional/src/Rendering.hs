@@ -6,21 +6,31 @@ import Graphics.Gloss
 
 import Game
 
+boardGridColor :: Color
 boardGridColor = makeColorI 255 255 255 255
+
+playerXColor :: Color
 playerXColor = makeColorI 255 50 50 255
+
+playerOColor :: Color
 playerOColor = makeColorI 50 100 255 255
+
+tieColor :: Color
 tieColor = greyN 0.5
 
+boardAsRunningPicture :: Board -> Picture
 boardAsRunningPicture board =
     pictures [ color playerXColor $ xCellsOfBoard board
              , color playerOColor $ oCellsOfBoard board
-             , color boardGridColor $ boardGrid
+             , color boardGridColor boardGrid
              ]
 
+outcomeColor :: Maybe Player -> Color
 outcomeColor (Just PlayerX) = playerXColor
 outcomeColor (Just PlayerO) = playerOColor
 outcomeColor Nothing = tieColor
 
+snapPictureToCell :: (Integral a, Integral b) => Picture -> (a, b) -> Picture
 snapPictureToCell picture (row, column) = translate x y picture
     where x = fromIntegral column * cellWidth + cellWidth * 0.5
           y = fromIntegral row * cellHeight + cellHeight * 0.5
@@ -60,12 +70,14 @@ boardGrid =
                        ])
       [0.0 .. fromIntegral n]
 
+boardAsPicture :: Board -> Picture
 boardAsPicture board =
     pictures [ xCellsOfBoard board
              , oCellsOfBoard board
              , boardGrid
              ]
 
+boardAsGameOverPicture :: Maybe Player -> Board -> Picture
 boardAsGameOverPicture winner board = color (outcomeColor winner) (boardAsPicture board)
 
 gameAsPicture :: Game -> Picture

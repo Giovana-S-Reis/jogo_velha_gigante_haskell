@@ -5,9 +5,12 @@ import Data.Foldable ( asum )
 
 import Game
 import Graphics.Gloss.Interface.Pure.Game
+import Data.Maybe (isNothing)
 
+isCoordCorrect :: (Int, Int) -> Bool
 isCoordCorrect = inRange ((0, 0), (n - 1, n - 1))
 
+switchPlayer :: Game -> Game
 switchPlayer game =
     case gamePlayer game of
       PlayerX -> game { gamePlayer = PlayerO }
@@ -25,8 +28,9 @@ winner board = asum $ map full $ rows ++ cols ++ diags
                   ,[board ! (i,j) | i <- [0..n-1], let j = n-1-i ]]
 
 countCells :: Cell -> Board -> Int
-countCells cell = length . filter ((==) cell) . elems
+countCells cell = length . filter (cell ==) . elems
 
+checkGameOver :: Game -> Game
 checkGameOver game
     | Just p <- winner board =
         game { gameState = GameOver $ Just p }
@@ -37,7 +41,7 @@ checkGameOver game
 
 playerTurn :: Game -> (Int, Int) -> Game
 playerTurn game cellCoord
-    | isCoordCorrect cellCoord && board ! cellCoord == Nothing =
+    | isCoordCorrect cellCoord && isNothing (board ! cellCoord) =
         checkGameOver
         $ switchPlayer
         $ game { gameBoard = board // [(cellCoord, Just player)] }
@@ -50,6 +54,7 @@ mousePosAsCellCoord (x, y) = ( floor ((y + (fromIntegral screenHeight * 0.5)) / 
                              , floor ((x + (fromIntegral screenWidth * 0.5)) / cellWidth)
                              )
 
+transformGame :: Event -> Game -> Game
 transformGame (EventKey (MouseButton LeftButton) Up _ mousePos) game =
     case gameState game of
       Running -> playerTurn game $ mousePosAsCellCoord mousePos
