@@ -5,22 +5,23 @@
 
 packages:
 - completed:
-    hackage: gloss-1.10.2.3@sha256:f27214222c3d763bfa62b3d522f4c7b5adb1bbd8a9652889b077d0049f11ea62,3661
+    hackage: gloss-1.13.2.2@sha256:e1a017c22fa337b2eec594dd62db6c9e20cbf02d9e8d98ffd970a1d639a42913,3977
     pantry-tree:
-      size: 3481
-      sha256: b215821a5520e631a9dcdf0fc27db24253953433542bab20612819b6fd101e6e
+      sha256: dc3c880f8c1ce4d46ef06c60993982318482d41123ab0c22c807e6c14f71662b
+      size: 3807
   original:
-    hackage: gloss-1.10.2.3
+    hackage: gloss-1.13.2.2
 - completed:
-    hackage: gloss-rendering-1.10.3.3@sha256:207b61f90d4815b0e8438a1a729b4d412b6ae903e8ad38cdfdc61eb999f75079,1464
+    hackage: gloss-rendering-1.13.1.2@sha256:2f00aa0fa980427b5d8a2911c34bc0acf16d109c8cfc9addc4e5362aa48a284a,1549
     pantry-tree:
+      sha256: 2649e27f1a5fdc399c098b9456f1b2a84a9596e29df2bbfafbda65620e8fab50
       size: 895
-      sha256: f3afd6201ecb0415aa67fba85e6f325f8d74f90db8663ca5511fab5c647e013d
   original:
-    hackage: gloss-rendering-1.10.3.3
+    hackage: gloss-rendering-1.13.1.2
 snapshots:
 - completed:
-    size: 533451
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/9/0.yaml
-    sha256: 27f29b231b39ea68e967a7a4346b2693a49d77c50f41fc0c276e11189a538da7
-  original: lts-9.0
+    sha256: 795b7a893148a42f09956611a0fa1139293fe6ef934d053468d8e53e3e013390
+    size: 719577
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/30.yaml
+  original:
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/30.yaml
